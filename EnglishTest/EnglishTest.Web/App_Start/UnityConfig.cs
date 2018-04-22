@@ -1,3 +1,5 @@
+using EnglishTest.Data.Repositories;
+using EnglishTest.Service.Services;
 using System;
 
 using Unity;
@@ -41,7 +43,32 @@ namespace EnglishTest.Web
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-            // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<IAnswerRepository, AnswerRepository>();
+            container.RegisterType<IAnswerService, AnswerService>();
+
+            container.RegisterType<ILevelRepository, LevelRepository>();
+            container.RegisterType<ILevelService, LevelService>();
+
+            container.RegisterType<IPositionRepository, PositionRepository>();
+            container.RegisterType<IPositionService, PositionService>();
+
+            container.RegisterType<IQuestionRepository, QuestionRepository>();
+            container.RegisterType<IQuestionService, QuestionService>();
+
+            container.RegisterType<IResultRepository, ResultRepository>();
+            container.RegisterType<IResultService, ResultService>();
+
+            container.RegisterType<ITestKitRepository, TestKitRepository>();
+            container.RegisterType<ITestKitService, TestKitService>();
+
+            container.RegisterType<IUnitRepository, UnitRepository>();
+            container.RegisterType<IUnitService, UnitService>();
+
+            container.RegisterType<IUserAdminRepository, UserAdminRepository>();
+            container.RegisterType<IUserAdminService, UserAdminService>();
+
+            container.RegisterType<IUserCandidateRepository, UserCandidateRepository>();
+            container.RegisterType<IUserCandidateService, UserCandidateService>();
         }
     }
 }

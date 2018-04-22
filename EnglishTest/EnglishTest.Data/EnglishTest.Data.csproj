@@ -51,9 +51,21 @@
     <Compile Include="Infrastructure\IRepositoryBase.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AnswerRepository.cs" />
+    <Compile Include="Repositories\LevelRepository.cs" />
+    <Compile Include="Repositories\PositionRepository.cs" />
+    <Compile Include="Repositories\QuestionRepository.cs" />
+    <Compile Include="Repositories\ResultRepository.cs" />
+    <Compile Include="Repositories\TestKitRepository.cs" />
+    <Compile Include="Repositories\UnitRepository.cs" />
+    <Compile Include="Repositories\UserAdminRepository.cs" />
+    <Compile Include="Repositories\UserCandidateRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <ProjectReference Include="..\EnglishTest.Model\EnglishTest.Model.csproj">
+      <Project>{48bb4bb6-c6df-45e5-946a-a6e300bca80f}</Project>
+      <Name>EnglishTest.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

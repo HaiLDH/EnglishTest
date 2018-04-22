@@ -47,11 +47,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Answer.cs" />
+    <Compile Include="Models\Level.cs" />
+    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\Result.cs" />
+    <Compile Include="Models\TestKit.cs" />
+    <Compile Include="Models\Unit.cs" />
+    <Compile Include="Models\UserAdmin.cs" />
+    <Compile Include="Models\UserCandidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

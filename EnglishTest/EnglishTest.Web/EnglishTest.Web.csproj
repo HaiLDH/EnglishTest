@@ -135,6 +135,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="ConnectionStrings.config" />
+    <Content Include="AppSettings.config" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -147,6 +149,20 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EnglishTest.Data\EnglishTest.Data.csproj">
+      <Project>{1b6e8c0e-792d-4136-800a-b4842cd48183}</Project>
+      <Name>EnglishTest.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnglishTest.Model\EnglishTest.Model.csproj">
+      <Project>{48bb4bb6-c6df-45e5-946a-a6e300bca80f}</Project>
+      <Name>EnglishTest.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnglishTest.Service\EnglishTest.Service.csproj">
+      <Project>{67bf29c3-c506-4c99-9187-32bfe60c8811}</Project>
+      <Name>EnglishTest.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -43,14 +43,25 @@
     <Compile Include="Infrastructure\IServiceBase.cs" />
     <Compile Include="Infrastructure\ServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AnswerService.cs" />
+    <Compile Include="Services\LevelService.cs" />
+    <Compile Include="Services\PositionService.cs" />
+    <Compile Include="Services\QuestionService.cs" />
+    <Compile Include="Services\ResultService.cs" />
+    <Compile Include="Services\TestKitService.cs" />
+    <Compile Include="Services\UnitService.cs" />
+    <Compile Include="Services\UserAdminService.cs" />
+    <Compile Include="Services\UserCandidateService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\EnglishTest.Data\EnglishTest.Data.csproj">
       <Project>{1b6e8c0e-792d-4136-800a-b4842cd48183}</Project>
       <Name>EnglishTest.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnglishTest.Model\EnglishTest.Model.csproj">
+      <Project>{48bb4bb6-c6df-45e5-946a-a6e300bca80f}</Project>
+      <Name>EnglishTest.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
