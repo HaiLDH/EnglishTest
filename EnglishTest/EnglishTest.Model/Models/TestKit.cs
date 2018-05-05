@@ -18,6 +18,10 @@ namespace EnglishTest.Model.Models
         [Required]
         public string TypeKitName { get; set; }
 
+        public DateTime CreateDate { get; set; }
+
+        public string CreateBy { get; set; }
+
         public int Level { get; set; }
 
         public int Amount { get; set; }

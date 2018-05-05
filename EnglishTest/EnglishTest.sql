@@ -45,6 +45,14 @@ CREATE TABLE [dbo].[Level]
 )
 GO
 
+INSERT dbo.Level
+(
+    LevelName
+)
+VALUES
+('Difficult' -- LevelName - varchar(250)
+)
+
 ALTER TABLE [dbo].[UserCandidate]
 ADD CONSTRAINT FK_UCLevelID FOREIGN KEY ([LevelID]) REFERENCES [dbo].[Level]([LevelID])
 GO
@@ -64,11 +72,31 @@ CREATE TABLE [dbo].[TestKit]
 (
 	[TestKitID] INT PRIMARY KEY IDENTITY,
 	[TypeKitName] VARCHAR(250),
+	[CreateDate] DATE,
+	[CreateBy] VARCHAR(50),
 	[Level] INT,
 	[Amount] INT,
 	[Minutes] INT
 )
 GO
+
+INSERT dbo.TestKit
+(
+    TypeKitName,
+    CreateDate,
+    CreateBy,
+    Level,
+    Amount,
+    Minutes
+)
+VALUES
+(   'University Up',        -- TypeKitName - varchar(250)
+    GETDATE(), -- CreateDate - date
+    'HaiLD6',        -- CreateBy - varchar(50)
+    3,         -- Level - int
+    30,         -- Amount - int
+    120          -- Minutes - int
+    )
 
 CREATE TABLE [dbo].[Question]
 (
@@ -82,6 +110,28 @@ CREATE TABLE [dbo].[Question]
 	[UpdateDate] DATE
 )
 GO
+
+INSERT dbo.Question
+(
+    Content,
+    Level,
+    TestKitID,
+    CreateBy,
+    CreateDate,
+    UpdateBy,
+    UpdateDate
+)
+VALUES
+(   'When can we meet again?',        -- Content - varchar(max)
+    2,         -- Level - int
+    1,         -- TestKitID - int
+    'HaiLD6',        -- CreateBy - varchar(50)
+    GETDATE(), -- CreateDate - date
+    'HaiLD6',        -- UpdateBy - varchar(50)
+    GETDATE()  -- UpdateDate - date
+)
+
+
 
 ALTER TABLE [dbo].[Question]
 ADD CONSTRAINT FK_QTKID FOREIGN KEY ([TestKitID]) REFERENCES [dbo].[TestKit]([TestKitID])
@@ -99,6 +149,26 @@ CREATE TABLE [dbo].[Answer]
 	[UpdateDate] DATE
 )
 GO
+
+INSERT dbo.Answer
+(
+    Content,
+    Status,
+    QuestionID,
+    CreateBy,
+    Createdate,
+    UpdateBy,
+    UpdateDate
+)
+VALUES
+(   'How do you do?',        -- Content - varchar(max)
+    0,      -- Status - bit
+    1,         -- QuestionID - int
+    'HaiLD6',        -- CreateBy - varchar(50)
+    GETDATE(), -- Createdate - date
+    'HaiLD6',        -- UpdateBy - varchar(50)
+    GETDATE()  -- UpdateDate - date
+    )
 
 ALTER TABLE [dbo].[Answer]
 ADD CONSTRAINT FK_AQuestionID FOREIGN KEY ([QuestionID]) REFERENCES [dbo].[Question]([QuestionID])

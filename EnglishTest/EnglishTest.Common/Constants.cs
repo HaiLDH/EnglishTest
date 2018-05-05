@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EnglishTest.Common
+﻿namespace EnglishTest.Common
 {
     public class Constants
     {
+        //UserHelper
+        public const string LoggedUser = "loggedUser";
     }
 }

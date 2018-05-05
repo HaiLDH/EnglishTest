@@ -1,0 +1,39 @@
+﻿@model IEnumerable<EnglishTest.Model.Models.TestKit>
+
+@{
+    ViewBag.Title = "Test Kit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+<div class="box-body">
+    <table class="table table-bordered">
+        <tr>
+            <th style="width: 10px">TestKitID</th>
+            <th>TypeKitName</th>
+            <th style="width: 10px">Level</th>
+            <th style="width: 10px">Amount</th>
+            <th style="width: 10px">Minutes</th>
+        </tr>
+        @foreach (var testKit in Model)
+        {
+            <tr>
+                <th style="width: 10px; text-align:center">@testKit.TestKitID</th>
+                <th>@testKit.TypeKitName</th>
+                <th style="width: 10px; text-align:center">@testKit.Level</th>
+                <th style="width: 10px; text-align:center">@testKit.Amount</th>
+                <th style="width: 10px; text-align:center">@testKit.Minutes</th>
+
+                <td style="width: 8%; text-align:center">
+                    <button class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("ProductAdd", "AdminProduct", new { id = testKit.TestKitID })'"><i class="fa fa-pencil-square-o"></i></button>
+                    <button class="btn btn-sm btn-danger" onclick="location.href='@Url.Action("ProductDelete", "AdminProduct", new { id = testKit.TestKitID })'"><i class="fa fa-trash-o"></i></button>
+                </td>
+            </tr>
+        }
+        <tfoot>
+            <tr>
+                <td colspan="13"><span class="pull-right"><strong>Total:</strong> @Model.Count() TestKit</span></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+

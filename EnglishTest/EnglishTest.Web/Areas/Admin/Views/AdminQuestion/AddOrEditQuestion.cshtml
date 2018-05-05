@@ -1,0 +1,81 @@
+﻿@model EnglishTest.Web.Areas.Admin.Models.EditQuestion
+
+@{
+    ViewBag.Title = "AddOrEditQuestion";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+    var question = Model.Question;
+    var answers = Model.Answers;
+    var levels = Model.Levels;
+    var testkits = Model.TestKits;
+}
+
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">New Question</h3>
+    </div>
+    <form class="form-horizontal" novalidate name="frmAddOrEditQuestion" role="form" method="post" action="/AdminProduct/Add">
+        <div class="box-body">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">QuestionID</label>
+                <div class="col-sm-10">
+                    <input type="text" name="questionID" value="@question.QuestionID" readonly class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Content</label>
+                <div class="col-sm-10">
+                    <input type="text" name="content" value="@question.Content" required class="form-control">
+                    <span ng-show="frmAddProduct.title.$invalid || frmAddProduct.name.$error.maxlength" class="has-error">Title required and less than 250 characters</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Level</label>
+                <div class="col-sm-10">
+                    <select name="level" class="form-control">
+                        @foreach (var level in levels)
+                        {
+                            <option value="@level.LevelID" @(level.LevelID == question.Level ? "selected" : string.Empty )>@level.LevelName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">TestKit</label>
+                <div class="col-sm-10">
+                    <select name="testKitID" class="form-control">
+                        @foreach (var testkit in testkits)
+                        {
+                            <option value="@testkit.TestKitID" @(testkit.TestKitID == question.TestKitID ? "selected" : string.Empty )>@testkit.TypeKitName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            @{
+                char alphabet = 'A';
+                foreach (var ans in answers)
+                {
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">@string.Format("Answer {0}", alphabet)</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="content" value="@ans.Content" required class="form-control">
+                        </div>
+                    </div>
+                    alphabet++;
+                }
+            }
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <button type="button" onclick="location.href='@Url.Action("Index", "AdminQuestion")'" class="btn btn-default">Cancel</button>
+            <button type="submit" onclick="location.href='@Url.Action("AddOrEditQuestion", "AdminQuestion", new { questionId = question.QuestionID })'" class="btn btn-success pull-right" ng-disabled="frmProductAdd.$invalid">Save</button>
+        </div>
+        <!-- /.box-footer -->
+    </form>
+</div>
+
+
+
+
+
+
+

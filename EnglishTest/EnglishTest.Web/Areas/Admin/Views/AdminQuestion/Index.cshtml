@@ -1,0 +1,145 @@
+﻿@model EnglishTest.Web.Areas.Admin.Models.FullQuestion
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+    var questions = Model.Questions;
+    var answers = Model.Answers;
+    var levels = (IEnumerable<EnglishTest.Model.Models.Level>)ViewBag.Levels;
+    var testkits = (IEnumerable<EnglishTest.Model.Models.TestKit>)ViewBag.Testkits;
+}
+
+<div class="container" style="width:100%">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#questionModal">Add New Question</button>
+    <br />
+    <br />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td style="width: 10px">QuestionID</td>
+                <td>Content</td>
+                <td>Level</td>
+                <td>TestKitID</td>
+                <td>Create By</td>
+                <td>Create Date</td>
+                <td>Update By</td>
+                <td>Update Date</td>
+                <td style="text-align:center">Action</td>
+            </tr>
+        </thead>
+
+        <tbody class="tbody">
+            @foreach (var question in questions)
+            {
+                <tr>
+                    <td rowspan="2" style="width: 10px; text-align:center; vertical-align:middle">@question.QuestionID</td>
+                    <td>@question.Content</td>
+                    <td>@question.Level</td>
+                    <td>@question.TestKitID</td>
+                    <td>@question.CreateBy</td>
+                    <td>@question.CreateDate.ToString("dd/MM/yyyy")</td>
+                    <td>@question.UpdateBy</td>
+                    <td>@question.UpdateDate.ToString("dd/MM/yyyy")</td>
+
+                    <td rowspan="2" style="width: 8%; text-align:center; vertical-align:middle">
+                        <button class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("AddOrEditQuestion", "AdminQuestion", new { questionId = question.QuestionID })'"><i class="fa fa-pencil-square-o"></i></button>
+                        <button class="btn btn-sm btn-danger" onclick="location.href='@Url.Action("ProductDelete", "AdminProduct", new { id = question.QuestionID })'"><i class="fa fa-trash-o"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    @{
+                        var ansQuestion = answers.Where(a => a.QuestionID == question.QuestionID).ToList();
+                        char alphabet = 'A';
+                        foreach (var ans in ansQuestion)
+                        {
+                            <td colspan="2" style="color:@(ans.Status ? "red" : "black")">
+                                @string.Format("{0}. {1}", alphabet, ans.Content)
+                            </td>
+                            alphabet++;
+                        }
+                    }
+                </tr>
+                        }
+        </tbody>
+
+        <tfoot>
+            @{
+                if (questions.Count() > 0)
+                {
+                    <tr>
+                        <td colspan="8"><span style="margin-right:50px" class="pull-right"><strong>Total:</strong> @questions.Count() Questions</span></td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td style="text-align:center; color:red">No questions found!</td>
+                    </tr>
+                }
+            }
+        </tfoot>
+    </table>
+
+    <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="box-title">New Question</h3>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group" style="display:none">
+                            <label for="QuestionID">QuestionID</label>
+                            <input type="text" class="form-control" id="txtQuestionID" placeholder="QuestionID" disabled="disabled" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Content">Content</label>
+                            <input type="text" class="form-control" id="txtContent" placeholder="Content" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Level">Level</label>
+                            <select id="drplevel" class="form-control">
+                                @foreach (var level in levels)
+                                {
+                                    <option value="@level.LevelID">@level.LevelName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="TestKit">TestKit</label>
+                            <select name="testKitID" class="form-control">
+                                @foreach (var testkit in testkits)
+                                {
+                                    <option value="@testkit.TestKitID">@testkit.TypeKitName</option>
+                                }
+                            </select>
+                        </div>
+                        @{
+                            char alp = 'A';
+                            foreach (var ans in answers)
+                            {
+                                <div class="form-group">
+                                    <label>@string.Format("Answer {0}", alp)</label>
+                                    <input type="text" name="txtAnswer" value="@ans.Content" required class="form-control">
+                                </div>
+                                alp++;
+                            }
+                        }
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" style="float:right" class="btn btn-primary" id="btnAdd" onclick="AddQuestion()">Add</button>
+                    <button type="button" style="float:right;display:none" class="btn btn-primary" id="btnUpdate" onclick="Update();">Update</button>
+                    <button type="button" style="float:left" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section footerJS{
+    <script src="~/Assets/Admin/js/question.js"></script>
+}
