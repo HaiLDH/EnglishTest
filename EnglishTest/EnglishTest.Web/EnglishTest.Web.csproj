@@ -4943,6 +4943,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminUserController.cs" />
     <Compile Include="Areas\Admin\Models\EditQuestion.cs" />
     <Compile Include="Areas\Admin\Models\FullQuestion.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5042,6 +5043,7 @@
     <Content Include="Areas\Admin\Views\AdminQuestion\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AdminQuestion\AddOrEditQuestion.cshtml" />
     <None Include="packages.config" />
+    <Content Include="Views\User\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -5053,7 +5055,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Client\" />
     <Folder Include="Assets\Libraries\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
